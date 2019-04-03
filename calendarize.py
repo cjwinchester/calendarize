@@ -50,7 +50,7 @@ end = date(YEAR, 12, 31)
 # get the difference b/t the two
 diff = end - start
 
-# loop over the range of dates
+# loop over the range of days
 for x in range(diff.days + 1):
 
     # the current day we're working on here
@@ -69,15 +69,17 @@ for x in range(diff.days + 1):
 
     # create a new dictionary for this day
     # default is just the date, nothing else
-    record = {"date": d}
+    record = {'date': d}
 
     # however! if we try to look up this date in our dictionary of events
     # and find something, add a new entry to that dictionary with
     # details of the event
-    if event_data.get(formatted_date):
-        record = {"date": d, "event": event_data.get(formatted_date)}
+    event = event_data.get(formatted_date)
 
-    # either way, whang it into the list for this month
+    if event:
+        record['event'] = event
+
+    # now whang it into the list for this month
     year_data[month].append(record)
 
 # next, add the blanks before and after the start of the actual
@@ -85,6 +87,7 @@ for x in range(diff.days + 1):
 
 # loop over the ordered dict
 for month in year_data:
+
     # grab the day of the week for the first day of the month
     # 0 = Monday, 1 = Tuesday, etc.
     firstwday = year_data[month][0]['date'].weekday()
@@ -93,30 +96,33 @@ for month in year_data:
     # so if this is a Sunday, we don't need to prepend anything
     # if it's not, drop some empty strings in there
     if firstwday < 6:
+
         # get a list of empty strings, however many is called for
-        # e.g. Monday is 0, so we want 0+1 blank strings to prepend
-        prepend = ["" for x in range(firstwday + 1)]
+        # e.g. Monday is 0, so we want to prepend 0+1 blank strings
+        prepend = ['' for x in range(firstwday + 1)]
 
         # and prepend those to the list for this month
         year_data[month][:0] = prepend
 
     # now, check to see how many blanks to append to the end of the month
-    # it'll be 42 - however many items we have in our list now
+    # it'll be 42 minus however many items we have in our list now
     blanks_to_append = GRID - len(year_data[month])
 
     # if we have blanks to append
     if blanks_to_append:
+
         # make a list of em
-        end_blanks = ["" for x in range(blanks_to_append)]
+        end_blanks = ['' for x in range(blanks_to_append)]
 
         # and drop em onto the end of the list
         year_data[month].extend(end_blanks)
 
-    # confirm that each list for each month has a 7 * 6 grid
+    # confirm that each list for each month matches the
+    # number of entries on a 7 * 6 grid
     assert(len(year_data[month]) == GRID)
 
 # create a Jinja loader that looks in the current directory
-loader = FileSystemLoader(searchpath="./")
+loader = FileSystemLoader(searchpath='./')
 
 # set up the Jinja environment using this loader
 env = Environment(loader=loader)
