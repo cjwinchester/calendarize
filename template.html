@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>A calendar!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>{{ year }}</h1>
+{% for month in data %}
+  <div>
+    <h5>{{ month|upper }}</h5>
+    <table>
+      <thead>
+        <th>S</th>
+        <th>M</th>
+        <th>T</th>
+        <th>W</th>
+        <th>T</th>
+        <th>F</th>
+        <th>S</th>
+      </thead>
+      <tbody>
+        <tr>
+        {% for day in data[month] %}
+          <td class="{% if day.date %}date{% if day.event %} highlight{% endif %}{% else %}blank{% endif %}"{% if day.event %} title="{{ day.event }}"{% endif %}></td>
+        {% if loop.index % 7 == 0%}
+        </tr>
+        <tr>
+            {% endif %}
+        {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% endfor %}
+  </body>
+</html>

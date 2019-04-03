@@ -1,0 +1,37 @@
+body {
+  font-family: sans-serif;
+}
+
+div {
+ display: inline-block;
+ margin: 15px;
+}
+
+h1, h5 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+th {
+  border: none;
+  color: #ccc;
+  font-size: 9px;
+  text-align: center;
+}
+
+td {
+  height: 15px;
+  width: 15px;
+  border: 1px solid #ccc;
+  margin: 0;
+  padding: 0;
+}
+
+td.blank {
+  border: none;
+}
+
+td.highlight {
+  background-color: steelblue;
+  border: none;
+}
