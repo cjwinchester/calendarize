@@ -41,15 +41,7 @@ with open(DATA_FILE) as df:
 # keys will be month names, e.g. 'Jan', while values will be a list
 # that includes both days of the month and empty strings for blank
 # spots at the start/end of a calendar month (e.g., previous and next months)
-#
-# Here's kind of what we're after:
-#
-# S M T W T F S
-#   ▢⃞▢⃞▢⃞▢⃞▢⃞▢⃞
-# ▢⃞▢⃞▢⃞▢⃞▢⃞▢⃞▢⃞
-# ▢⃞▢⃞▢⃞▢⃞▢⃞▢⃞▢⃞
-# ▢⃞▢⃞▢⃞▢⃞▢⃞▢⃞▢⃞
-# ▢⃞▢⃞▢⃞
+
 year_data = OrderedDict()
 
 # define start and end days -- a calendar year

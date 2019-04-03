@@ -14,7 +14,7 @@ To render the "hello world" example:
 4. `pipenv run python calendarize.py`
 
 ### `calendarize.py`
-This file ingests a CSV of dates to highlight on the calendar -- example at `data.csv` -- mashes 'em up with a thing keeping track of days for the given year and then passes the data along to template (`template.html`) to render into your final output file, `calendar.html`. The four variables up top you might want to change:
+This file ingests a CSV of dates to highlight on the calendar -- example at [`data.csv`](data.csv) -- mashes 'em up with a thing keeping track of days for the given year and then passes the data along to template (`template.html`) to render into your final output file, `calendar.html`. The four variables up top you might want to change:
 - `YEAR`: The calendar year you want to display
 - `DATA_FILE`: The CSV of events you want to highlight
 - `TEMPLATE`: The name of the template file
